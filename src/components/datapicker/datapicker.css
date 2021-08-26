@@ -1,6 +1,7 @@
 #calendar {
   background-color: rgb(57, 57, 219);
   color: white;
+  width: 200px;
   padding: 5px;
   margin-top: 5px;
   box-shadow: 3px 5px 5px 0 darkblue;

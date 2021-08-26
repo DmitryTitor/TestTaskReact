@@ -9,8 +9,13 @@
   background: transparent;
 }
 
-.calendar__arrows-div > span {
+.calendar__arrow-down {
   margin: 0 3px;
+  font-size: 150%;
+}
+
+.calendar__arrow-up {
+  margin-left: 3px;
   font-size: 150%;
 }
 

@@ -1,0 +1,7 @@
+.calendar__table {
+  width: 100%;
+}
+
+.calendar__table > * {
+  text-align: center;
+}

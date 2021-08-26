@@ -9,20 +9,17 @@ export default class Datapicker extends React.Component {
     const { data, changeYear, updateCalendar, changeMonth } = this.props;
 
     return (
-      <div>
-        <input type='text' id='datapicker__input' readOnly />
-        <div id='calendar'>
-          <DatapickerHeader
-            minYear={data.minYear}
-            maxYear={data.maxYear}
-            selectedDate={data.selectedDate}
-            state={this.state}
-            changeYear={changeYear}
-            updateCalendar={updateCalendar}
-            changeMonth={changeMonth}
-          />
-          <DatapickerMain daysArray={data.daysArray} />
-        </div>
+      <div id='calendar'>
+        <DatapickerHeader
+          minYear={data.minYear}
+          maxYear={data.maxYear}
+          selectedDate={data.selectedDate}
+          state={this.state}
+          changeYear={changeYear}
+          updateCalendar={updateCalendar}
+          changeMonth={changeMonth}
+        />
+        <DatapickerMain daysArray={data.daysArray} />
       </div>
     );
   }
