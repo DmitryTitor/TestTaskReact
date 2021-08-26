@@ -1,0 +1,19 @@
+.calendar__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.calendar__arrows-div > span {
+  margin: 0 3px;
+  font-size: 150%;
+}
+
+.calendar__header > select:hover {
+  cursor: pointer;
+}
+
+.calendar__arrows-div > span:hover {
+  color: black;
+  cursor: pointer;
+}
