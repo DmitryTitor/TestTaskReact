@@ -4,6 +4,11 @@
   justify-content: space-between;
 }
 
+.calendar__arrow-up::selection,
+.calendar__arrow-down::selection {
+  background: transparent;
+}
+
 .calendar__arrows-div > span {
   margin: 0 3px;
   font-size: 150%;

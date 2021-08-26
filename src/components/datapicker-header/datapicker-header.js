@@ -31,6 +31,18 @@ export default class DatapickerHeader extends React.Component {
       }
     };
 
+    this.nextMonth = () => {
+      const month = document.querySelector('.calendar__month-picker');
+      month.selectedIndex = +month.value === 11 ? 0 : +month.value + 1;
+      this.props.changeMonth(null, +month.value);
+    };
+
+    this.prevMonth = () => {
+      const month = document.querySelector('.calendar__month-picker');
+      month.selectedIndex = +month.value === 0 ? 11 : +month.value - 1;
+      this.props.changeMonth(null, +month.value);
+    };
+
     this.getPreviousMonthDays = (year, month, dayWeek) => {
       const arr = [];
       const daysOutputNumber = this.getPreviousMonthDaysNumber();
@@ -42,14 +54,20 @@ export default class DatapickerHeader extends React.Component {
         daysNumber--;
       }
 
-      console.log(arr);
-
       return arr;
     };
   }
 
   render() {
-    const { minYear, maxYear, selectedDate, state, changeYear } = this.props;
+    const {
+      minYear,
+      maxYear,
+      selectedDate,
+      state,
+      changeYear,
+      updateCalendar,
+      changeMonth,
+    } = this.props;
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth();
     const yearsSelect = [];
@@ -77,7 +95,8 @@ export default class DatapickerHeader extends React.Component {
         <select
           className='calendar__year-picker'
           defaultValue={year}
-          onChange={changeYear(this)}
+          onChange={(e) => changeYear(e)}
+          // onChange={() => updateCalendar()}
         >
           {yearsSelect.map((item) => {
             return (
@@ -91,7 +110,7 @@ export default class DatapickerHeader extends React.Component {
         <select
           className='calendar__month-picker'
           defaultValue={month}
-          onChange={this.changeMonth}
+          onChange={(e) => changeMonth(e)}
         >
           {months.map((item, index) => {
             return (
@@ -107,8 +126,16 @@ export default class DatapickerHeader extends React.Component {
         </select>
 
         <div className='calendar__arrows-div'>
-          <span className='calendar__arrow-down'>🠋</span>
-          <span className='calendar__arrow-up'>🠉</span>
+          <span
+            className='calendar__arrow-down'
+            onClick={() => this.prevMonth()}
+          >
+            🠋
+          </span>
+
+          <span className='calendar__arrow-up' onClick={() => this.nextMonth()}>
+            🠉
+          </span>
         </div>
       </header>
     );

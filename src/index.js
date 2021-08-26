@@ -10,7 +10,6 @@ class App extends React.Component {
 
     this.getDaysArray = () => {
       const arr = [];
-      console.log('this.state.data=', this.state.data);
       const year = this.state.data.selectedDate.getFullYear();
       const month = this.state.data.selectedDate.getMonth() + 1;
       const days = new Date(year, month, 0).getDate();
@@ -25,15 +24,10 @@ class App extends React.Component {
 
       let i = 0;
       let j = 1;
-      console.log('days=', days);
-      console.log('prevDays=', prevDays);
-      console.log('nextDays=', nextDays);
-      console.log('dayWeek=', dayWeek);
+
       while (i < 42) {
         if (i === 0) {
           for (let k = 0; k < prevDaysShow; k++) {
-            console.log('k=', k);
-            console.log('prevDays - k=', prevDays - k);
             arr.unshift(prevDays - k);
             i++;
           }
@@ -48,8 +42,6 @@ class App extends React.Component {
         j++;
         i++;
       }
-
-      console.log('arr=', arr);
 
       return arr;
     };
@@ -80,6 +72,12 @@ class App extends React.Component {
       }
     };
 
+    this.updateCalendar = () => {
+      this.setState((state) => {
+        return (state.data.daysArray = this.getDaysArray());
+      });
+    };
+
     this.state = {
       data: {
         currentDate: new Date(),
@@ -99,26 +97,30 @@ class App extends React.Component {
     };
   }
 
-  changeYear = (selectObj) => {
-    console.log('this.state.data=', this.state.data);
-    // console.log('this.state.selectedDate=', this.state.selectedDate);
-    // this.setState({
-    //   selectedDate: new Date(2000, 4, 20),
-    // });
-    // console.log('this.state.selectedDate=', this.state.selectedDate);
-    // this.setState((state) => {
-    //   let { selectedDate } = state;
-    //   let newDate = new Date(
-    //     selectObj.target.value,
-    //     selectedDate.getMonth(),
-    //     selectedDate.getDate()
-    //   );
-    //   console.log('TEST changeYear');
-    //   console.log('newDate=', newDate);
-    //   console.log('selectedDate=', selectedDate);
-    //   console.log('TEST changeYear');
-    //   return { selectedDate: newDate };
-    // });
+  changeYear = (e) => {
+    this.setState(
+      (state) =>
+        (state.data.selectedDate = new Date(
+          e.target.value,
+          state.data.selectedDate.getMonth(),
+          state.data.selectedDate.getDate()
+        ))
+    );
+    this.updateCalendar();
+  };
+
+  changeMonth = (e, arrowData) => {
+    const newMonth = arrowData === undefined ? e.target.value : arrowData;
+
+    this.setState(
+      (state) =>
+        (state.data.selectedDate = new Date(
+          state.data.selectedDate.getFullYear(),
+          newMonth,
+          state.data.selectedDate.getDate()
+        ))
+    );
+    this.updateCalendar();
   };
 
   render() {
@@ -128,14 +130,13 @@ class App extends React.Component {
           <h1>Страница для выбора даты</h1>
         </header>
         <main className='main'>
-          <input
-            onClick={() =>
-              this.setState((state) => {
-                return (state.data.daysArray = this.getDaysArray());
-              })
-            }
+          <input onClick={() => this.updateCalendar()} />
+          <Datapicker
+            data={this.state.data}
+            updateCalendar={this.updateCalendar}
+            changeYear={this.changeYear}
+            changeMonth={this.changeMonth}
           />
-          <Datapicker data={this.state.data} changeYear={this.changeYear} />
         </main>
       </div>
     );

@@ -6,8 +6,8 @@ import DatapickerMain from '../datapicker-main/datapicker-main';
 
 export default class Datapicker extends React.Component {
   render() {
-    const { data, changeYear } = this.props;
-    console.log('data=', this.props.data);
+    const { data, changeYear, updateCalendar, changeMonth } = this.props;
+
     return (
       <div>
         <input type='text' id='datapicker__input' readOnly />
@@ -18,6 +18,8 @@ export default class Datapicker extends React.Component {
             selectedDate={data.selectedDate}
             state={this.state}
             changeYear={changeYear}
+            updateCalendar={updateCalendar}
+            changeMonth={changeMonth}
           />
           <DatapickerMain daysArray={data.daysArray} />
         </div>
