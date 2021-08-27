@@ -188,6 +188,11 @@ export default class App extends React.Component {
   };
 
   changeDay = (e, index) => {
+    // При повторном нажатии на уже выбранную дату - ничего не делать
+    if (e.target.classList.contains('currentDay')) {
+      return undefined;
+    }
+
     const monthElem = document.querySelector('.calendar__month-picker');
     const yearElem = document.querySelector('.calendar__year-picker');
     const day = e.target.textContent;
