@@ -187,9 +187,6 @@ export default class App extends React.Component {
       arrowDataMonth === undefined ? e.target.value : arrowDataMonth;
     const newYear =
       arrowDataYear === undefined ? +yearElem.value : arrowDataYear;
-    console.log('yearElem.value =', yearElem.value);
-    console.log('newYear=', newYear);
-    console.log('this.state.data.selectedDate =', this.state.data.selectedDate);
 
     this.setState(
       (state) =>
@@ -203,47 +200,36 @@ export default class App extends React.Component {
   };
 
   changeDay = (e, index) => {
+    const monthElem = document.querySelector('.calendar__month-picker');
+    const yearElem = document.querySelector('.calendar__year-picker');
     const day = e.target.textContent;
-    let diffYear = 0;
-    let diffMonth = 0;
+    let newMonth = this.state.data.selectedDate.getMonth();
+    let newYear = this.state.data.selectedDate.getFullYear();
 
     if (index < 6 && day > 20) {
-      diffMonth = -1;
+      if (this.state.data.selectedDate.getMonth() === 0) {
+        newYear = newYear - 1;
+        newMonth = 11;
+      } else {
+        newMonth = newMonth - 1;
+      }
     }
 
     if (index > 27 && day < 20) {
-      diffMonth = 1;
+      if (this.state.data.selectedDate.getMonth() === 11) {
+        newYear = newYear + 1;
+        newMonth = 0;
+      } else {
+        newMonth = newMonth + 1;
+      }
     }
 
     this.setState((state) => {
-      return (state.data.selectedDate = new Date(
-        state.data.selectedDate.getFullYear(),
-        state.data.selectedDate.getMonth() + diffMonth,
-        day
-      ));
+      return (state.data.selectedDate = new Date(newYear, newMonth, day));
     });
-    this.changeMonth(null, this.state.data.selectedDate.getMonth() + diffMonth);
-    const month = document.querySelector('.calendar__month-picker');
 
-    if (+month.value === 0) {
-      if (diffMonth !== -1) {
-        month.selectedIndex =
-          this.state.data.selectedDate.getMonth() + diffMonth;
-      } else {
-        month.selectedIndex = 11;
-      }
-    }
-
-    if (+month.value === 11) {
-      if (diffMonth !== 1) {
-        month.selectedIndex =
-          this.state.data.selectedDate.getMonth() + diffMonth;
-      } else {
-        month.selectedIndex = 1;
-      }
-    }
-
-    month.selectedIndex = this.state.data.selectedDate.getMonth() + diffMonth;
+    monthElem.selectedIndex = newMonth;
+    yearElem.selectedIndex = newYear - this.state.data.minYear;
 
     this.updateCalendar();
   };
@@ -255,7 +241,10 @@ export default class App extends React.Component {
   };
 
   formatSelectedDate = () => {
-    const day = this.state.data.selectedDate.getDate();
+    const day =
+      this.state.data.selectedDate.getDate() > 9
+        ? this.state.data.selectedDate.getDate()
+        : '0' + this.state.data.selectedDate.getDate();
     const month =
       this.state.data.selectedDate.getMonth() + 1 > 9
         ? this.state.data.selectedDate.getMonth() + 1
