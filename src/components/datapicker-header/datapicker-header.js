@@ -33,14 +33,26 @@ export default class DatapickerHeader extends React.Component {
 
     this.nextMonth = () => {
       const month = document.querySelector('.calendar__month-picker');
-      month.selectedIndex = +month.value === 11 ? 0 : +month.value + 1;
-      this.props.changeMonth(null, +month.value);
+      const year = document.querySelector('.calendar__year-picker');
+      if (+month.value === 11) {
+        month.selectedIndex = 0;
+        year.selectedIndex = +year.value + 1 - this.props.minYear;
+      } else {
+        month.selectedIndex = +month.value + 1;
+      }
+      this.props.changeMonth(null, +month.value, +year.value);
     };
 
     this.prevMonth = () => {
       const month = document.querySelector('.calendar__month-picker');
-      month.selectedIndex = +month.value === 0 ? 11 : +month.value - 1;
-      this.props.changeMonth(null, +month.value);
+      const year = document.querySelector('.calendar__year-picker');
+      if (+month.value === 0) {
+        month.selectedIndex = 11;
+        year.selectedIndex = +year.value - 1 - this.props.minYear;
+      } else {
+        month.selectedIndex = +month.value - 1;
+      }
+      this.props.changeMonth(null, +month.value, +year.value);
     };
 
     this.getPreviousMonthDays = (year, month, dayWeek) => {
