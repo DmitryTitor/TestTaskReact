@@ -105,63 +105,63 @@ export default class App extends React.Component {
         maxYear: 2050,
         dateEvents: [
           {
-            date: new Date(1700, 1, 1),
+            date: new Date(1700, 0, 1),
             title: 'Новый год',
           },
           {
-            date: new Date(1922, 2, 23),
+            date: new Date(1922, 1, 23),
             title: 'День защитника Отечества',
           },
           {
-            date: new Date(1975, 3, 8),
+            date: new Date(1975, 2, 8),
             title: 'Международный женский день',
           },
           {
-            date: new Date(1686, 4, 1),
+            date: new Date(1686, 3, 1),
             title: 'День смеха',
           },
           {
-            date: new Date(1945, 5, 9),
+            date: new Date(1945, 4, 9),
             title: 'День Победы в Великой Отечественной войне',
           },
           {
-            date: new Date(1889, 5, 1),
+            date: new Date(1889, 4, 1),
             title: 'День труда',
           },
           {
-            date: new Date(1999, 6, 29),
+            date: new Date(1999, 5, 29),
             title: 'День рождения разработчика этого календаря',
           },
           {
-            date: new Date(1799, 6, 6),
+            date: new Date(1799, 5, 6),
             title: 'День рождения Пушкина',
           },
           {
-            date: new Date(1990, 6, 12),
+            date: new Date(1990, 5, 12),
             title: 'День России',
           },
           {
-            date: new Date(1966, 7, 20),
+            date: new Date(1966, 6, 20),
             title: 'Международный день шахмат',
           },
           {
-            date: new Date(1930, 8, 2),
+            date: new Date(1930, 7, 2),
             title: 'День ВДВ',
           },
           {
-            date: new Date(1984, 9, 1),
+            date: new Date(1984, 8, 1),
             title: 'День знаний',
           },
           {
-            date: new Date(1994, 10, 5),
+            date: new Date(1994, 9, 5),
             title: 'Всемирный день учителей',
           },
           {
-            date: new Date(2005, 11, 4),
+            date: new Date(2005, 10, 4),
             title: 'День народного единства',
           },
           {
-            date: new Date(1999, 11, 19),
+            date: new Date(1999, 10, 19),
             title: 'Международный мужской день',
           },
         ],

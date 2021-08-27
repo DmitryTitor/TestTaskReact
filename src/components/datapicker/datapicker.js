@@ -23,6 +23,8 @@ export default class Datapicker extends React.Component {
         <DatapickerMain
           daysArray={data.daysArray}
           currentDayIndex={data.currentDayIndex}
+          selectedDate={data.selectedDate}
+          dateEvents={data.dateEvents}
           changeDay={changeDay}
         />
       </div>
