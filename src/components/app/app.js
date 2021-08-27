@@ -37,18 +37,6 @@ export default class App extends React.Component {
           }
 
           for (let k = 0; k < days; k++) {
-            if (
-              k === this.state.data.selectedDate.getDate() &&
-              this.state.data.selectedDate.getMonth() ===
-                new Date().getMonth() &&
-              this.state.data.selectedDate.getFullYear() ===
-                new Date().getFullYear()
-            ) {
-              n = i - 1;
-              this.setState((state) => {
-                return (state.data.currentDayIndex = n);
-              });
-            }
             arr.push(k + 1);
             i++;
           }
